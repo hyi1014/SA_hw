@@ -2,34 +2,34 @@
 
 #help function
 function usage() 
-{
-    echo -n -e "\nUsage: sahw2.sh {--sha256 hashes ... | --md5 hashes ...} -i files ...
-    \n--sha256: SHA256 hashes to validate input files.\n--md5:MD5 hashes to validate input files.\n-i: Input files.\n"
-    exit 0
+{ 
+    echo -n -e "\nUsage: sahw2.sh {--sha256 hashes ... | --md5 hashes ...} -i files ...\n\n--sha256: SHA256 hashes to validate input files.\n--md5: MD5 hashes to validate input files.\n-i: Input files.\n"
 }
 #error
 function err_args() 
 {
-    echo -n -e "Error: Invalid arguments.\n" 1>&2
+    echo -n -e "Error: Invalid arguments." 1>&2
     usage
     exit 1
 }
-
 function err_vals() 
 {
-    echo -n -e "Error: Invalid values.\n" 1>&2
+    echo -n -e "Error: Invalid values." 1>&2
     exit 1
 }
-
 function err_csum()
 {
-    echo -n -e "Error: Invalid checksum.\n" 1>&2
+    echo -n -e "Error: Invalid checksum." 1>&2
     exit 1
 }
-
 function err_type()
 {
-    echo -n -e "Error: Only one type of hash function is allowed.\n" 1>&2
+    echo -n -e "Error: Only one type of hash function is allowed." 1>&2
+    exit 1
+}
+function err_format()
+{
+    echo -n -e "Error: Invalid file format." 1>&2
     exit 1
 }
 #check hash value 
@@ -86,7 +86,11 @@ function check_hash()
     fi
     exit 0
 }
+#parsing json & csv
+# function parsing()
+# {
 
+# }
 if [ "$1" = "-h" ]
 then
     usage
