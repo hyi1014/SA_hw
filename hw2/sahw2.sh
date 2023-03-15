@@ -7,22 +7,29 @@ function usage()
     \n--sha256: SHA256 hashes to validate input files.\n--md5:MD5 hashes to validate input files.\n-i: Input files.\n"
     exit 0
 }
-#error args
+#error
 function err_args() 
 {
     echo -n -e "Error: Invalid arguments.\n" 1>&2
     usage
     exit 1
 }
-#error values
+
 function err_vals() 
 {
     echo -n -e "Error: Invalid values.\n" 1>&2
     exit 1
 }
+
 function err_csum()
 {
     echo -n -e "Error: Invalid checksum.\n" 1>&2
+    exit 1
+}
+
+function err_type()
+{
+    echo -n -e "Error: Only one type of hash function is allowed.\n" 1>&2
     exit 1
 }
 #check hash value 
@@ -34,7 +41,11 @@ function check_hash()
     for ((i=1 ; i<$# ; i++))
     do
         [[ "${!i}" = "-i" ]] && pos_i=${i}
-        [[ "${!i}" = "--md5" || "${!i}" = "--sha256" ]] && pos_h=${i}
+        if [[ "${!i}" = "--md5" || "${!i}" = "--sha256" ]]
+        then
+            [ $pos_h != 0 ] && err_type
+            pos_h=${i}
+        fi
     done
     #check len_1 = len_2
     (( "${pos_i}" >= "${pos_h}" )) &&  len_1=$((${pos_i}-${pos_h}-1))
@@ -76,10 +87,13 @@ function check_hash()
     exit 0
 }
 
-check_hash $@
-
-# if [ "$1" = "-h" ]
-# then
-#     usage
-# fi
+if [ "$1" = "-h" ]
+then
+    usage
+elif [ "$1" = "--md5" ] || [ "$1" = "--sha256" ] || [ "$1" = "-i" ]
+then
+    check_hash $@
+else
+    err_args 
+fi
 
