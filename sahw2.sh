@@ -1,5 +1,18 @@
 #!/bin/bash
 
+buffer_file=()
+buffer_hash=()
+
+buffer_username=()
+buffer_password=()
+buffer_shell=()
+buffer_group=()
+
+#-1: no file type
+#1: JSON
+#2: CSV
+file_type=-1
+
 #help function
 function usage() 
 { 
@@ -32,7 +45,54 @@ function err_format()
     echo -n -e "Error: Invalid file format." 1>&2
     exit 1
 }
+
+#join array
+
+function join()
+{
+  local d=$1 f=$2
+  if shift 2
+  then
+  joined_res=$(printf %s "$f" "${@/#/$d}")
+  fi
+  echo $joined_res
+}
+
+#add user
+
+function user_add()
+{
+    # #add user
+    !(cat /etc/passwd | grep -q $1) && sudo useradd -p $2 -s $3 $1
+    #add user to group
+    [[ "${4}" != "" ]] && sudo usermod -a -G $4 $1
+}
+
+#parse csv file
+function parse_csv()
+{
+    OLDIFS=$IFS
+    IFS=','
+    while read -r username password shell group
+    do
+        buffer_username+=($username)
+        buffer_password+=($password)
+        buffer_shell+=($shell)
+        buffer_group+=($group)
+    done <<< "$(tail -n +2 $file)"
+    IFS=$OLDIFS
+}
+
+#parse json file
+
+function parse_json()
+{
+    len=`jq length $1`
+    
+}
+
 #check hash value 
+
 function check_hash()
 {
     pos_i=0
@@ -51,10 +111,7 @@ function check_hash()
     (( "${pos_i}" >= "${pos_h}" )) &&  len_1=$((${pos_i}-${pos_h}-1))
     (( "${pos_i}" < "${pos_h}" )) &&  len_1=$((${pos_h}-${pos_i}-1))
     len_2=$((${#@}-$len_1-2))
-    # echo "pos_i: ${pos_i}"
-    # echo "pos_h: ${pos_h}"
-    # echo "len_1: ${len_1}"
-    # echo "len_2: ${len_2}"
+
     if [ $len_1 != $len_2 ]
     then
         err_vals
@@ -86,17 +143,35 @@ function check_hash()
     fi
     exit 0
 }
-#parsing json & csv
-# function parsing()
-# {
 
-# }
+#parsing file
+function parsing()
+{
+    #check file
+    for ((i=0 ; i<${#buffer_file[@]} ; i++))
+    do
+        file ${buffer_file[i]} | grep -q "JSON" && file_type=1 && return 0
+        file ${buffer_file[i]} | grep -q "CSV" && file_type=2 && return 0
+        #not json or csv
+        file_type=-1 && err_format
+    done    
+}
+#main
 if [ "$1" = "-h" ]
 then
     usage
 elif [ "$1" = "--md5" ] || [ "$1" = "--sha256" ] || [ "$1" = "-i" ]
 then
     check_hash $@
+    parsing
+    while true
+    do read -p "This script will create the following user(s): ${buffer_user[@]} Do you want to continue? [y/n]:"
+        case $REPLY in
+            y|Y) exit 0;;
+            n|N) exit 0;;
+            *) err_format;;
+        esac
+    done
 else
     err_args 
 fi
