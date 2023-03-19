@@ -141,7 +141,6 @@ function check_hash()
     else
         err_vals
     fi
-    exit 0
 }
 
 #parsing file
@@ -167,8 +166,8 @@ then
     while true
     do read -p "This script will create the following user(s): ${buffer_user[@]} Do you want to continue? [y/n]:"
         case $REPLY in
-            y|Y) exit 0;;
-            n|N) exit 0;;
+            y|Y) echo yes; exit 0;;
+            n|N) echo no; exit 0;;
             *) err_format;;
         esac
     done
