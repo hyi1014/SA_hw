@@ -1,2 +1,3 @@
 #!/bin/bash
-a=-1 && echo ododod
+STR1="This,is,a,string"
+echo ${STR1//,/ }

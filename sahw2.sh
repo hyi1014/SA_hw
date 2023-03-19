@@ -8,11 +8,6 @@ buffer_password=()
 buffer_shell=()
 buffer_group=()
 
-#-1: no file type
-#1: JSON
-#2: CSV
-file_type=-1
-
 #help function
 function usage() 
 { 
@@ -45,9 +40,7 @@ function err_format()
     echo -n -e "Error: Invalid file format." 1>&2
     exit 1
 }
-
 #join array
-
 function join()
 {
   local d=$1 f=$2
@@ -57,42 +50,7 @@ function join()
   fi
   echo $joined_res
 }
-
-#add user
-
-function user_add()
-{
-    # #add user
-    !(cat /etc/passwd | grep -q $1) && sudo useradd -p $2 -s $3 $1
-    #add user to group
-    [[ "${4}" != "" ]] && sudo usermod -a -G $4 $1
-}
-
-#parse csv file
-function parse_csv()
-{
-    OLDIFS=$IFS
-    IFS=','
-    while read -r username password shell group
-    do
-        buffer_username+=($username)
-        buffer_password+=($password)
-        buffer_shell+=($shell)
-        buffer_group+=($group)
-    done <<< "$(tail -n +2 $file)"
-    IFS=$OLDIFS
-}
-
-#parse json file
-
-function parse_json()
-{
-    len=`jq length $1`
-    
-}
-
 #check hash value 
-
 function check_hash()
 {
     pos_i=0
@@ -142,18 +100,77 @@ function check_hash()
         err_vals
     fi
 }
-
-#parsing file
+#parse csv file
+function parse_csv()
+{
+    #echo "parse csv"
+    while IFS=',' read -r username password shell groups
+    do
+        buffer_username+=($username)
+        buffer_password+=($password)
+        buffer_shell+=($shell)
+        tmp=()
+        IFS=' ' read -r -a tmp <<< "$group"
+        buffer_group+=$(join ',' ${tmp[@]})
+    # skip the first line     
+    done <<< "$(tail -n +2 $INPUT)"
+}
+#parse json file
+function parse_json()
+{
+    len=`jq length $1`
+    for ((i=0; i<$len; i++))
+    do
+        buffer_username+=($(jq -r ".[$i].username" $1))
+        buffer_password+=($(jq -r ".[$i].password" $1))
+        buffer_shell+=($(jq -r ".[$i].shell" $1))
+        tmp=($(jq -r ".[$i].groups[]" $1))
+        buffer_group+=$(join ',' ${tmp[@]})
+        done
+}
+#parsing files
 function parsing()
 {
-    #check file
+    #check files
     for ((i=0 ; i<${#buffer_file[@]} ; i++))
     do
-        file ${buffer_file[i]} | grep -q "JSON" && file_type=1 && return 0
-        file ${buffer_file[i]} | grep -q "CSV" && file_type=2 && return 0
+        file ${buffer_file[i]} | grep -q "JSON" && parse_json ${buffer_file[i]} && continue
+        file ${buffer_file[i]} | grep -q "CSV" && parse_csv ${buffer_file[i]} && continue
         #not json or csv
-        file_type=-1 && err_format
+        err_format
     done    
+}
+#add user
+function user_add()
+{
+    user_groups=IFS=',' read -r -a tmp <<< "$4"
+    #add group
+    for group in "${user_groups[@]}"
+    do
+        if [ cat /etc/group | grep -q $group ]
+        then
+            continue
+        else
+            sudo groupadd $group
+        fi
+    done
+    #add user
+    if [ cat /etc/passwd | grep -q $1 ]
+    then
+        echo "Warning: user $1 already exists."
+    else
+        sudo useradd -p $2 -s $3 $1
+    fi
+    #add user to group
+    [[ "${4}" != "" ]] && sudo usermod -a -G $4 $1
+}
+#add users
+function users_add()
+{
+    for ((i=0 ; i<${#buffer_username[@]} ; i++))
+    do
+        user_add ${buffer_username[i]} ${buffer_password[i]} ${buffer_shell[i]} ${buffer_group[i]}
+    done
 }
 #main
 if [ "$1" = "-h" ]
@@ -164,11 +181,11 @@ then
     check_hash $@
     parsing
     while true
-    do read -p "This script will create the following user(s): ${buffer_user[@]} Do you want to continue? [y/n]:"
+    do read -p "This script will create the following user(s): $(join ' ' ${buffer_username[@]}) Do you want to continue? [y/n]:"
         case $REPLY in
-            y|Y) echo yes; exit 0;;
-            n|N) echo no; exit 0;;
-            *) err_format;;
+            y|Y) users_add;exit 0;;
+            n|N) exit 0;;
+            *) exit 0;;
         esac
     done
 else
