@@ -1,4 +1,4 @@
 username,password,shell,groups
-admin_cat,cat051,/bin/sh, wheel operator
-meow_2,cat002,/bin/tcsh,
-meow_3,cat003,/bin/csh,
+admin_cat979,cat051,/bin/sh, wheel operator
+meow_266,cat002,/bin/tcsh,
+meow_300q,cat003,/bin/csh,

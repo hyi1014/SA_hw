@@ -107,6 +107,7 @@ function parse_csv()
 {
     while IFS=',' read -r username password shell groups
     do
+        #echo $username
         buffer_username+=($username)
         buffer_password+=($password)
         buffer_shell+=($shell)
@@ -127,7 +128,7 @@ function parse_json()
         buffer_shell+=($(jq -r ".[$i].shell" $1))
         tmp=($(jq -r ".[$i].groups[]" $1))
         buffer_group+=$(join ',' ${tmp[@]})
-        done
+    done
 }
 #parsing files
 function parsing()
@@ -137,9 +138,11 @@ function parsing()
     do
         file ${buffer_file[i]} | grep -q "JSON" && parse_json ${buffer_file[i]} && continue
         file ${buffer_file[i]} | grep -q "CSV" && parse_csv ${buffer_file[i]} && continue
+        #file ${buffer_file[i]} | grep -q "ASCII" && parse_json ${buffer_file[i]} && continue
+
         #not json or csv
         err_format
-    done    
+    done
 }
 #add user
 function user_add()
@@ -187,7 +190,8 @@ then
     while true
     do read -p "This script will create the following user(s): $(join ' ' ${buffer_username[@]}) Do you want to continue? [y/n]:"
         case $REPLY in
-            y|Y) users_add;exit 0;;
+            #y|Y) users_add;exit 0;;
+            y|Y) exit 0;;
             n|N) exit 0;;
             *) exit 0;;
         esac
