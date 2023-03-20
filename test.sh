@@ -1,3 +1,5 @@
 #!/bin/bash
-STR1="This,is,a,string"
-echo ${STR1//,/ }
+buffer_file=${@:2:2}
+test=${buffer_file[@]}
+array+=($test)
+echo ${array[0]}

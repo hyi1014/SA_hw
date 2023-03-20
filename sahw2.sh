@@ -76,12 +76,14 @@ function check_hash()
     fi
 
     #check hash value
-    buffer_file=${@:$((pos_i+1)):${len_1}}
-    buffer_hash=${@:$((pos_h+1)):${len_1}}
+    buffer_file+=(${@:$((pos_i+1)):${len_1}})
+    buffer_hash+=(${@:$((pos_h+1)):${len_1}})
     if [ "${!pos_h}" = "--md5" ]
     then
         for ((i=0 ; i<${len_1} ; i++))
         do
+            #echo ${buffer_hash[i]}
+            #echo $(md5sum ${buffer_file[i]} | awk '{print $1}')
             if [ "${buffer_hash[i]}" != "$(md5sum ${buffer_file[i]} | awk '{print $1}')" ]
             then
                 err_csum
@@ -103,7 +105,6 @@ function check_hash()
 #parse csv file
 function parse_csv()
 {
-    #echo "parse csv"
     while IFS=',' read -r username password shell groups
     do
         buffer_username+=($username)
@@ -113,7 +114,7 @@ function parse_csv()
         IFS=' ' read -r -a tmp <<< "$group"
         buffer_group+=$(join ',' ${tmp[@]})
     # skip the first line     
-    done <<< "$(tail -n +2 $INPUT)"
+    done <<< "$(tail -n +2 $1)"
 }
 #parse json file
 function parse_json()
@@ -154,8 +155,9 @@ function user_add()
             sudo groupadd $group
         fi
     done
+    
     #add user
-    if [ cat /etc/passwd | grep -q $1 ]
+    if [ $(cat /etc/passwd | grep -q $1) ]
     then
         echo "Warning: user $1 already exists."
     else
@@ -179,7 +181,9 @@ then
 elif [ "$1" = "--md5" ] || [ "$1" = "--sha256" ] || [ "$1" = "-i" ]
 then
     check_hash $@
+    #echo "Checksums are valid."
     parsing
+    #echo "Parsing files."
     while true
     do read -p "This script will create the following user(s): $(join ' ' ${buffer_username[@]}) Do you want to continue? [y/n]:"
         case $REPLY in
