@@ -3,8 +3,8 @@
 #./sahw2.sh --md5 6e080bc4430d7078e7531ed66ab1d024 365d087f5499e2e7aff992832d2f0500 -i data2.csv data1.json 
 
 
-./sahw2.sh --md5  "$(md5sum ${1} | awk '{print $1}')" "$(md5sum ${2} | awk '{print $1}')" -i $1 $2
-
+./sahw2.sh --md5  "$(md5sum ${1} | awk '{print $1}')" "$(md5sum ${2} | awk '{print $1}')" "$(md5sum ${3} | awk '{print $1}')" -i $1 $2 $3
+#./sahw2.sh --sha256  "$(sha256sum ${1} | awk '{print $1}')" "$(sha256sum ${2} | awk '{print $1}')" -i $1 $2
 
 
 

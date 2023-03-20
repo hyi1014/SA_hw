@@ -1,0 +1,260 @@
+[
+    {
+        "username": "admin_cat55",
+        "password": "cat011",
+        "shell": "/bin/sh",
+        "groups": ["wheel", "operator"]
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_267",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username": "meow_777",
+        "password": "cat002",
+        "shell": "/bin/tcsh",
+        "groups": []
+    },
+    {
+        "username":"meow_387",
+        "password":"cat003",
+        "shell":"/bin/csh",
+        "groups": []
+    }
+]

@@ -53,8 +53,7 @@ function join()
 #check hash value 
 function check_hash()
 {
-    pos_i=0
-    pos_h=0
+    local pos_i=0 pos_h=0 len_1=0 len_2=0 i=0 j=0 
    #get the position of -i and -hash
     for ((i=1 ; i<$# ; i++))
     do
@@ -111,38 +110,50 @@ function parse_csv()
         buffer_username+=($username)
         buffer_password+=($password)
         buffer_shell+=($shell)
-        tmp=()
+        [[ $groups = "" ]] && buffer_group+=("null") && continue
+        local tmp=()
         IFS=' ' read -r -a tmp <<< "$group"
-        buffer_group+=$(join ',' ${tmp[@]})
+        buffer_group+=($(join ',' ${tmp[@]}))
     # skip the first line     
     done <<< "$(tail -n +2 $1)"
+    #echo ${buffer_group[@]}
 }
 #parse json file
 function parse_json()
 {
     len=`jq length $1`
+    local i=0
     for ((i=0; i<$len; i++))
     do
         buffer_username+=($(jq -r ".[$i].username" $1))
         buffer_password+=($(jq -r ".[$i].password" $1))
         buffer_shell+=($(jq -r ".[$i].shell" $1))
-        tmp=($(jq -r ".[$i].groups[]" $1))
-        buffer_group+=$(join ',' ${tmp[@]})
+        local tmp=($(jq -r ".[$i].groups[]" $1))
+        buffer_group+=($(join ',' ${tmp[@]}))
     done
+    #echo ${buffer_group[@]}
 }
 #parsing files
 function parsing()
 {
+    local i=0 j=0
     #check files
-    for ((i=0 ; i<${#buffer_file[@]} ; i++))
+    for ((i=0 ; i<"${#buffer_file[@]}" ; i++))
     do
-        file ${buffer_file[i]} | grep -q "JSON" && parse_json ${buffer_file[i]} && continue
+        echo ">${buffer_file[$i]}<"
+        # if [[ $(file "${buffer_file[$i]}" | grep -q "ASCII") != "" ]]
+        # then
+        #     parse_json ${buffer_file[$i]}
+        # fi
+        file ${buffer_file[i]} | grep -q "JSON" && parse_csv ${buffer_file[i]} && continue
         file ${buffer_file[i]} | grep -q "CSV" && parse_csv ${buffer_file[i]} && continue
-        #file ${buffer_file[i]} | grep -q "ASCII" && parse_json ${buffer_file[i]} && continue
+        file ${buffer_file[i]} | grep -q "ASCII" && parse_json ${buffer_file[i]} && continue
 
         #not json or csv
         err_format
     done
+    #file ${buffer_file[0]} | grep -q "ASCII" && parse_json ${buffer_file[0]}
+    #file ${buffer_file[1]} | grep -q "ASCII" && parse_json ${buffer_file[1]}
 }
 #add user
 function user_add()
@@ -172,6 +183,7 @@ function user_add()
 #add users
 function users_add()
 {
+    local i=0
     for ((i=0 ; i<${#buffer_username[@]} ; i++))
     do
         user_add ${buffer_username[i]} ${buffer_password[i]} ${buffer_shell[i]} ${buffer_group[i]}
@@ -187,15 +199,21 @@ then
     #echo "Checksums are valid."
     parsing
     #echo "Parsing files."
-    while true
-    do read -p "This script will create the following user(s): $(join ' ' ${buffer_username[@]}) Do you want to continue? [y/n]:"
+    # while true
+    # do
+    echo -n "This script will create the following user(s): "
+    for ((it=0 ; it<${#buffer_username[@]} ; it++))
+    do
+        echo -n "${buffer_username[$it]} "
+    done
+    echo -n "Do you want to continue? [y/n]:"
+    read
         case $REPLY in
             #y|Y) users_add;exit 0;;
             y|Y) exit 0;;
             n|N) exit 0;;
             *) exit 0;;
         esac
-    done
 else
     err_args 
 fi

@@ -1,5 +1,2 @@
 #!/bin/bash
-buffer_file=${@:2:2}
-test=${buffer_file[@]}
-array+=($test)
-echo ${array[0]}
+file data1.json | grep -q "ASCII" && echo "json"

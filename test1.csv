@@ -1,0 +1,151 @@
+username,password,shell,groups
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
+meow_1,cat001,/bin/sh, wheel operator
+meow_1,cat002,/bin/tcsh,
+meow_1,cat003,/bin/csh,
